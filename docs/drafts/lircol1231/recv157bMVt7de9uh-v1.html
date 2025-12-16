@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Guide</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+        crossorigin=""/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .hero {
+            background-image: linear-gradient(to bottom, #f7f7f7, #fff);
+            padding: 2em;
+            text-align: center;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1em;
+            padding: 1em;
+        }
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 1em;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+        #map {
+            height: 500px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        @media only screen and (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Discover Paris</h1>
+        <p>Explore the city of love and lights</p>
+    </div>
+    <div class="grid">
+        <div class="card">
+            <img src="https://source.unsplash.com/1600x900/?Paris,landmark" alt="Paris Landmark">
+            <h2>Eiffel Tower</h2>
+            <p>Visit the iconic Eiffel Tower for breathtaking views of the city. It's a must-visit attraction in Paris.</p>
+            <p>Coordinates: 48.8583, 2.2945</p>
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/1600x900/?Paris,street" alt="Paris Street">
+            <h2>Champs-Élysées</h2>
+            <p>Stroll along the famous Champs-Élysées and enjoy the street performers, cafes, and shopping. It's a great place to people-watch and soak up the Parisian atmosphere.</p>
+            <p>Coordinates: 48.8697, 2.3078</p>
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/1600x900/?Paris,food" alt="Paris Food">
+            <h2>Le Comptoir du Relais</h2>
+            <p>Indulge in delicious French cuisine at Le Comptoir du Relais, a cozy bistro with a warm atmosphere. Try their famous escargots and steak tartare.</p>
+            <p>Coordinates: 48.8534, 2.2955</p>
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/1600x900/?Paris,museum" alt="Paris Museum">
+            <h2>Louvre Museum</h2>
+            <p>Visit the world-famous Louvre Museum and see the Mona Lisa, Venus de Milo, and other famous artworks. The museum's stunning architecture and beautiful gardens are also worth exploring.</p>
+            <p>Coordinates: 48.8607, 2.2945</p>
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/1600x900/?Paris,park" alt="Paris Park">
+            <h2> Luxembourg Gardens</h2>
+            <p>Escape the hustle and bustle of the city and relax in the beautiful Luxembourg Gardens. The gardens feature stunning fountains, statues, and walking paths.</p>
+            <p>Coordinates: 48.8467, 2.3378</p>
+        </div>
+    </div>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+        crossorigin=""></script>
+    <script>
+        const attractions = [
+            { name: "Eiffel Tower", lat: 48.8583, lng: 2.2945 },
+            { name: "Champs-Élysées", lat: 48.8697, lng: 2.3078 },
+            { name: "Le Comptoir du Relais", lat: 48.8534, lng: 2.2955 },
+            { name: "Louvre Museum", lat: 48.8607, lng: 2.2945 },
+            { name: "Luxembourg Gardens", lat: 48.8467, lng: 2.3378 },
+        ];
+        const map = L.map("map").setView([48.8567, 2.3508], 12);
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "&copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a>",
+            subdomains: ["a", "b", "c"],
+        }).addTo(map);
+        attractions.forEach((attraction) => {
+            const marker = L.marker([attraction.lat, attraction.lng]).addTo(map);
+            marker.bindPopup(`<b>${attraction.name}</b>`);
+        });
+    </script>
+</body>
+</html>
