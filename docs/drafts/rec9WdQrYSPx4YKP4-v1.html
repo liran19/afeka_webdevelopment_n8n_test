@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Guide</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+   integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+   crossorigin=""/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .hero {
+            background-image: linear-gradient(to bottom, #f7f7f7, #fff);
+            padding: 20px;
+            text-align: center;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+        .card h2 {
+            font-size: 18px;
+            margin-top: 0;
+        }
+        .card p {
+            font-size: 14px;
+            color: #666;
+        }
+        #map {
+            height: 600px;
+            width: 100%;
+            border: 1px solid #ddd;
+            margin: 20px 0;
+        }
+        @media only screen and (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Discover Paris</h1>
+        <img src="https://source.unsplash.com/1600x900/?Paris,landmark" alt="Paris landmark">
+    </div>
+    <div class="grid">
+        <div class="card">
+            <img src="https://source.unsplash.com/1600x900/?Paris,street" alt="Paris street">
+            <h2>Eiffel Tower</h2>
+            <p>The iconic Eiffel Tower is a must-visit attraction in Paris. It offers stunning views of the city from its top deck.</p>
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/1600x900/?Paris,food" alt="Paris food">
+            <h2>Louvre Museum</h2>
+            <p>The Louvre Museum is one of the world's largest and most famous museums, housing an impressive collection of art and artifacts.</p>
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/1600x900/?Paris,river" alt="Paris river">
+            <h2>Seine River Cruise</h2>
+            <p>A scenic river cruise along the Seine is a great way to see the city's landmarks and bridges while learning about its history and culture.</p>
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/1600x900/?Paris,market" alt="Paris market">
+            <h2>Montmartre Neighborhood</h2>
+            <p>The charming Montmartre neighborhood is known for its bohemian vibe, street artists, and stunning views of the city from the top of the hill.</p>
+        </div>
+    </div>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+   integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+   crossorigin=""></script>
+    <script>
+        const attractions = [
+            { name: "Eiffel Tower", lat: 48.8583, lng: 2.2945 },
+            { name: "Louvre Museum", lat: 48.8607, lng: 2.2945 },
+            { name: "Seine River Cruise", lat: 48.8566, lng: 2.3522 },
+            { name: "Montmartre Neighborhood", lat: 48.8867, lng: 2.3408 }
+        ];
+        const map = L.map("map").setView([48.8566, 2.3522], 12);
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "&copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a>",
+            subdomains: ["a", "b", "c"]
+        }).addTo(map);
+        attractions.forEach(attraction => {
+            L.marker([attraction.lat, attraction.lng]).addTo(map)
+                .bindPopup(`<b>${attraction.name}</b>`);
+        });
+    </script>
+</body>
+</html>
