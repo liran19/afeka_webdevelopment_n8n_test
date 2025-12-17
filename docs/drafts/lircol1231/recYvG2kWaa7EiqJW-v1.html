@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>France Travel Guide</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+  integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+  crossorigin=""/>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .hero {
+      background-image: url('https://source.unsplash.com/featured/1600x900/?France,Paris');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: 48px;
+    }
+    .attractions {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .attraction {
+      background-color: #f7f7f7;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .attraction img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0;
+    }
+    #map {
+      height: 400px;
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>Explore France</h1>
+  </div>
+  <div class="attractions">
+    <div class="attraction">
+      <img src="https://source.unsplash.com/featured/1600x900/?France,Louvre" referrerpolicy="no-referrer">
+      <h2>Louvre Museum</h2>
+      <p>The Louvre Museum is one of the world's largest and most famous museums, housing a vast collection of art and artifacts from around the world. Located in the heart of Paris, the museum is a must-visit destination for anyone interested in art, history, and culture.</p>
+      <p>Lat: 48.8607, Lng: 2.2945</p>
+    </div>
+    <div class="attraction">
+      <img src="https://source.unsplash.com/featured/1600x900/?France,Eiffel" referrerpolicy="no-referrer">
+      <h2>Eiffel Tower</h2>
+      <p>The Eiffel Tower is an iconic symbol of Paris and one of the most recognizable landmarks in the world. Built for the 1889 World's Fair, the tower stands at an impressive 324 meters tall and offers breathtaking views of the city.</p>
+      <p>Lat: 48.8583, Lng: 2.2945</p>
+    </div>
+    <div class="attraction">
+      <img src="https://source.unsplash.com/featured/1600x900/?France,Notre-Dame" referrerpolicy="no-referrer">
+      <h2>Notre-Dame Cathedral</h2>
+      <p>Notre-Dame Cathedral is a beautiful and historic church located on the Île de la Cité in Paris. Built in the 12th century, the cathedral is known for its stunning architecture, stunning stained glass windows, and rich history.</p>
+      <p>Lat: 48.8567, Lng: 2.2945</p>
+    </div>
+  </div>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+  integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+  crossorigin=""></script>
+  <script>
+    const map = L.map('map').setView([48.8567, 2.2945], 12);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+      subdomains: ['a', 'b', 'c']
+    }).addTo(map);
+    const attractions = [
+      { lat: 48.8607, lng: 2.2945, name: 'Louvre Museum' },
+      { lat: 48.8583, lng: 2.2945, name: 'Eiffel Tower' },
+      { lat: 48.8567, lng: 2.2945, name: 'Notre-Dame Cathedral' }
+    ];
+    attractions.forEach(attraction => {
+      L.marker([attraction.lat, attraction.lng]).addTo(map).bindPopup(attraction.name);
+    });
+  </script>
+</body>
+</html>
