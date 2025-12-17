@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Israel Attractions</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+        crossorigin=""/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .hero {
+            background-image: linear-gradient(to bottom, #f7f7f7, #fff);
+            padding: 20px;
+            text-align: center;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+        #map {
+            height: 600px;
+            width: 100%;
+            border: 1px solid #ddd;
+            margin: 20px 0;
+        }
+        @media only screen and (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Israel Attractions</h1>
+        <p>Explore the beauty of Israel</p>
+    </div>
+    <div class="grid">
+        <div class="card">
+            <img src="https://source.unsplash.com/1600x900/?Tel-Aviv,beach" alt="Tel Aviv Beach">
+            <h2>Tel Aviv Beach</h2>
+            <p>Enjoy the sun, sand, and sea at Tel Aviv's beautiful beach. Take a stroll along the promenade and enjoy the city's vibrant atmosphere.</p>
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/1600x900/?Jerusalem,old-city" alt="Jerusalem Old City">
+            <h2>Jerusalem Old City</h2>
+            <p>Explore the historic Old City of Jerusalem, with its narrow streets, ancient architecture, and rich cultural heritage. Visit the Western Wall, the Church of the Holy Sepulchre, and the Dome of the Rock.</p>
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/1600x900/?Dead-Sea,landscape" alt="Dead Sea Landscape">
+            <h2>Dead Sea Landscape</h2>
+            <p>Marvel at the stunning landscape of the Dead Sea, with its unique geological formations and breathtaking views. Take a dip in the salty waters and enjoy the therapeutic benefits of the Dead Sea.</p>
+        </div>
+    </div>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+        crossorigin=""></script>
+    <script>
+        const attractions = [
+            { name: "Tel Aviv Beach", lat: 32.0715, lng: 34.7683, recommendation: "Enjoy the sun, sand, and sea at Tel Aviv's beautiful beach." },
+            { name: "Jerusalem Old City", lat: 31.7833, lng: 35.2167, recommendation: "Explore the historic Old City of Jerusalem, with its narrow streets, ancient architecture, and rich cultural heritage." },
+            { name: "Dead Sea", lat: 31.5333, lng: 35.6167, recommendation: "Marvel at the stunning landscape of the Dead Sea, with its unique geological formations and breathtaking views." },
+            { name: "Haifa", lat: 32.8167, lng: 34.9833, recommendation: "Explore the beautiful city of Haifa, with its stunning views of the Mediterranean Sea and its rich cultural heritage." },
+            { name: "Eilat", lat: 29.55, lng: 34.95, recommendation: "Enjoy the sun, sand, and sea at Eilat's beautiful beach, and explore the city's vibrant nightlife." }
+        ];
+        const map = L.map("map").setView([31.7833, 35.2167], 7);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+            subdomains: ['a', 'b', 'c']
+        }).addTo(map);
+        attractions.forEach(attraction => {
+            const marker = L.marker([attraction.lat, attraction.lng]).addTo(map);
+            marker.bindPopup(`<b>${attraction.name}</b><br>${attraction.recommendation}`);
+        });
+    </script>
+</body>
+</html>
