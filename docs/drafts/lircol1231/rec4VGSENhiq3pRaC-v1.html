@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Attractions</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+        crossorigin=""/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .hero {
+            background-image: linear-gradient(to bottom, #f7f7f7, #fff);
+            padding: 2em;
+            text-align: center;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1em;
+            padding: 1em;
+        }
+        .card {
+            background-color: #fff;
+            padding: 1em;
+            border: 1px solid #ddd;
+            border-radius: 0.5em;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 0.5em 0.5em 0 0;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+        @media only screen and (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Paris Attractions</h1>
+    </div>
+    <div class="grid">
+        <div class="card">
+            <img src="https://source.unsplash.com/1600x900/?Paris,landmark" alt="Paris Landmark">
+            <h2>Eiffel Tower</h2>
+            <p>A must-visit attraction in Paris, the Eiffel Tower offers stunning views of the city.</p>
+            <p>Coordinates: 48.8583, 2.2945</p>
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/1600x900/?Paris,street" alt="Paris Street">
+            <h2>Champs-Élysées</h2>
+            <p>This famous street is lined with cafes, shops, and theaters, making it a great place to explore.</p>
+            <p>Coordinates: 48.8697, 2.3078</p>
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/1600x900/?Paris,food" alt="Paris Food">
+            <h2>Louvre Museum</h2>
+            <p>One of the world's largest and most famous museums, the Louvre is home to an impressive collection of art and artifacts.</p>
+            <p>Coordinates: 48.8607, 2.3231</p>
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/1600x900/?Paris,river" alt="Paris River">
+            <h2>Seine River</h2>
+            <p>A scenic river that runs through the heart of Paris, offering beautiful views and boat tours.</p>
+            <p>Coordinates: 48.8567, 2.3508</p>
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/1600x900/?Paris,park" alt="Paris Park">
+            <h2>Luxembourg Gardens</h2>
+            <p>A beautiful and peaceful park in the heart of Paris, perfect for a relaxing stroll.</p>
+            <p>Coordinates: 48.8467, 2.3378</p>
+        </div>
+    </div>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+        crossorigin=""></script>
+    <script>
+        const attractions = [
+            { name: "Eiffel Tower", lat: 48.8583, lng: 2.2945 },
+            { name: "Champs-Élysées", lat: 48.8697, lng: 2.3078 },
+            { name: "Louvre Museum", lat: 48.8607, lng: 2.3231 },
+            { name: "Seine River", lat: 48.8567, lng: 2.3508 },
+            { name: "Luxembourg Gardens", lat: 48.8467, lng: 2.3378 },
+        ];
+        const map = L.map("map").setView([48.8567, 2.3508], 12);
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "&copy; <a href='https://www.openstreetmap.org/">OpenStreetMap</a>",
+            subdomains: ["a", "b", "c"],
+        }).addTo(map);
+        attractions.forEach((attraction) => {
+            L.marker([attraction.lat, attraction.lng]).addTo(map).bindPopup(attraction.name);
+        });
+    </script>
+</body>
+</html>
