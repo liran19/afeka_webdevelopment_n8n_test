@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Japan Travel Guide</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+  integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+  crossorigin=""/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .hero {
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://loremflickr.com/800/600/Japan');
+      background-size: cover;
+      background-position: center;
+      height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      line-height: 1.6;
+    }
+    .sections {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    .sections h2 {
+      font-size: 2rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .attractions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .attraction {
+      background-color: #f7f7f7;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .attraction img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0;
+    }
+    .action {
+      color: #FF385C;
+    }
+    #map {
+      height: 400px;
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>Discover Japan</h1>
+  </div>
+  <div class="sections">
+    <h2>Introduction</h2>
+    <p>Japan is a country with a unique blend of traditional and modern culture. From bustling cities to serene landscapes, Japan has something to offer for every kind of traveler. With its rich history, vibrant food scene, and world-class amenities, Japan is a destination that will leave you with unforgettable memories.</p>
+    <h2>Attractions</h2>
+    <div class="attractions">
+      <div class="attraction">
+        <img src="https://loremflickr.com/800/600/Japan,Tokyo/all" alt="Tokyo">
+        <h3>Tokyo</h3>
+        <p>Tokyo is the capital city of Japan and is known for its neon-lit skyscrapers, bustling streets, and world-class restaurants. The city has a rich history, with landmarks like the Tokyo Tower and the Meiji Shrine. Visitors can explore the city's many districts, each with its own unique character and charm. From the trendy fashion of Harajuku to the historic temples of Asakusa, Tokyo has something for everyone.</p>
+      </div>
+      <div class="attraction">
+        <img src="https://loremflickr.com/800/600/Japan,Kyoto/all" alt="Kyoto">
+        <h3>Kyoto</h3>
+        <p>Kyoto is a city located on the island of Honshu and is known for its well-preserved traditional Japanese architecture. The city is home to many temples and shrines, including the famous Fushimi Inari Shrine and the Kinkaku-ji Temple. Visitors can stroll through the city's many gardens and parks, or take a walk through the traditional Gion district, famous for its geisha culture. With its rich history and culture, Kyoto is a must-visit destination in Japan.</p>
+      </div>
+      <div class="attraction">
+        <img src="https://loremflickr.com/800/600/Japan,Osaka/all" alt="Osaka">
+        <h3>Osaka</h3>
+        <p>Osaka is a city located on the island of Honshu and is known for its food, entertainment, and nightlife. The city is home to many restaurants, bars, and clubs, and is famous for its cuisine, including dishes like takoyaki and okonomiyaki. Visitors can explore the city's many districts, including the Dotonbori area, known for its neon lights and street food. With its vibrant atmosphere and delicious food, Osaka is a great destination for foodies and partygoers.</p>
+      </div>
+    </div>
+    <h2>Local Tips</h2>
+    <ul>
+      <li>Learn some basic Japanese phrases, such as "konnichiwa" (hello) and "arigatou" (thank you), to show respect for the culture.</li>
+      <li>Try some of the local cuisine, such as sushi, ramen, and tempura, to experience the unique flavors of Japan.</li>
+      <li>Respect the local customs and traditions, such as removing your shoes before entering a temple or home, to avoid offending the locals.</li>
+    </ul>
+    <div id="map"></div>
+  </div>
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+  integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+  crossorigin=""></script>
+  <script>
+    var map = L.map('map').setView([35.6895, 139.7670], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+      subdomains: ['a', 'b', 'c']
+    }).addTo(map);
+    var attractions = [
+      {lat: 35.6895, lng: 139.7670, name: 'Tokyo'},
+      {lat: 35.0211, lng: 135.7556, name: 'Kyoto'},
+      {lat: 34.6937, lng: 135.4932, name: 'Osaka'}
+    ];
+    attractions.forEach(function(attraction) {
+      var marker = L.marker([attraction.lat, attraction.lng]).addTo(map);
+      marker.bindPopup(attraction.name);
+    });
+  </script>
+</body>
+</html>
