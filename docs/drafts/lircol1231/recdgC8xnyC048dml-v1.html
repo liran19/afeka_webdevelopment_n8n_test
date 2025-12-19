@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Egypt Travel Guide</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    body {
+      font-family: Inter, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .hero {
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://loremflickr.com/1200/800/Egypt,Pyramids/all');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      background-color: #fff;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+    @media only screen and (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>Welcome to Egypt</h1>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h2>Pyramids of Giza</h2>
+      <img src="https://loremflickr.com/1200/800/Egypt,Pyramids/all" referrerpolicy="no-referrer" loading="lazy" width="100%" height="200px" object-fit="cover" />
+      <p>One of the Seven Wonders of the Ancient World</p>
+    </div>
+    <div class="card">
+      <h2>The Great Sphinx</h2>
+      <img src="https://loremflickr.com/1200/800/Egypt,Sphinx/all" referrerpolicy="no-referrer" loading="lazy" width="100%" height="200px" object-fit="cover" />
+      <p>A giant limestone statue with the body of a lion and the head of a human</p>
+    </div>
+    <div class="card">
+      <h2>Abu Simbel Temples</h2>
+      <img src="https://loremflickr.com/1200/800/Egypt,AbuSimbel/all" referrerpolicy="no-referrer" loading="lazy" width="100%" height="200px" object-fit="cover" />
+      <p>Two massive rock-cut temples built by Pharaoh Ramses II</p>
+    </div>
+  </div>
+  <div id="map" style="height: 400px; border-radius: 12px; margin: 20px 0;"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    let map = L.map('map').setView([29.9792, 31.1343], 10);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+      subdomains: ['a', 'b', 'c']
+    }).addTo(map);
+    L.marker([29.9792, 31.1343]).addTo(map).bindPopup('<b>Pyramids of Giza</b>').openPopup();
+    L.marker([29.9744, 31.1376]).addTo(map).bindPopup('<b>The Great Sphinx</b>');
+    L.marker([22.3369, 31.6153]).addTo(map).bindPopup('<b>Abu Simbel Temples</b>');
+  </script>
+</body>
+</html>
