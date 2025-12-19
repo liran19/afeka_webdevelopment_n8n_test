@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greece Travel Guide</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    body {
+      font-family: Inter, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .hero {
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://loremflickr.com/1200/800/Greece,Athens/all');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      padding: 20px;
+      transition: transform 0.2s ease-in-out;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+    }
+    @media only screen and (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>Explore Greece</h1>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h2>Athens</h2>
+      <img src="https://loremflickr.com/1200/800/Greece,Athens/all" referrerpolicy="no-referrer" loading="lazy" width="100%" height="200px" style="object-fit: cover; border-radius: 12px 12px 0 0;">
+      <p>Athens, the capital city of Greece, is a must-visit destination for history buffs and foodies alike.</p>
+    </div>
+    <div class="card">
+      <h2>Santorini</h2>
+      <img src="https://loremflickr.com/1200/800/Greece,Santorini/all" referrerpolicy="no-referrer" loading="lazy" width="100%" height="200px" style="object-fit: cover; border-radius: 12px 12px 0 0;">
+      <p>Santorini is famous for its picturesque whitewashed houses, blue-domed churches, and stunning sunsets.</p>
+    </div>
+    <div class="card">
+      <h2>Mykonos</h2>
+      <img src="https://loremflickr.com/1200/800/Greece,Mykonos/all" referrerpolicy="no-referrer" loading="lazy" width="100%" height="200px" style="object-fit: cover; border-radius: 12px 12px 0 0;">
+      <p>Mykonos is a vibrant island with beautiful beaches, vibrant nightlife, and a charming old town.</p>
+    </div>
+  </div>
+  <div id="map" style="height: 400px; border-radius: 12px; margin: 20px 0;"></div>
+  <script>
+    var map = L.map('map').setView([37.9833, 23.7333], 10);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+      subdomains: ['a', 'b', 'c']
+    }).addTo(map);
+    L.marker([37.9833, 23.7333]).addTo(map).bindPopup('<b>Athens</b>');
+    L.marker([36.4333, 25.4333]).addTo(map).bindPopup('<b>Santorini</b>');
+    L.marker([37.45, 25.3333]).addTo(map).bindPopup('<b>Mykonos</b>');
+  </script>
+</body>
+</html>
