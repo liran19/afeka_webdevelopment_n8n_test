@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greece Travel Guide</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+  integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+  crossorigin=""/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .hero {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://loremflickr.com/800/600/Greece');
+      background-size: cover;
+      background-position: center;
+      height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      line-height: 1.6;
+    }
+    .sections {
+      padding: 20px;
+    }
+    .sections h2 {
+      font-size: 2rem;
+      line-height: 1.6;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .card {
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0;
+    }
+    .action {
+      color: #FF385C;
+    }
+    #map {
+      height: 400px;
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>Discover the Wonders of Greece</h1>
+  </div>
+  <div class="sections">
+    <h2>Introduction</h2>
+    <p>Greece is a country with a rich history and culture, known for its stunning islands, delicious cuisine, and vibrant cities. From the ancient ruins of Athens to the picturesque villages of Santorini, Greece has something to offer for every kind of traveler. With its warm climate, beautiful beaches, and friendly locals, Greece is the perfect destination for your next vacation.</p>
+  </div>
+  <div class="sections">
+    <h2>Attractions</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://loremflickr.com/800/600/Greece,Acropolis/all">
+        <h3>Acropolis</h3>
+        <p>The Acropolis is a ancient citadel located in the heart of Athens, and it's one of the most famous landmarks in Greece. The Acropolis is home to the Parthenon, a stunning temple dedicated to the goddess Athena. The history of the Acropolis dates back to the 5th century BC, and it's a must-visit attraction for anyone interested in history and architecture. With its stunning views of the city and its rich history, the Acropolis is a truly unforgettable experience.</p>
+      </div>
+      <div class="card">
+        <img src="https://loremflickr.com/800/600/Greece,Santorini/all">
+        <h3>Santorini</h3>
+        <p>Santorini is a picturesque island located in the Aegean Sea, and it's known for its stunning sunsets, beautiful beaches, and charming villages. The island is home to the famous Oia village, which is perched on the edge of a cliff and offers breathtaking views of the sea. Santorini is also famous for its delicious wine and cuisine, and it's a popular destination for couples and honeymooners. With its romantic atmosphere and stunning landscapes, Santorini is a dream destination for many travelers.</p>
+      </div>
+      <div class="card">
+        <img src="https://loremflickr.com/800/600/Greece,Delphi/all">
+        <h3>Delphi</h3>
+        <p>Delphi is an ancient site located on the slopes of Mount Parnassus, and it's one of the most important archaeological sites in Greece. The site is home to the famous Oracle of Delphi, which was a powerful priestess who was believed to have the power to predict the future. Delphi is also home to the Temple of Apollo, which is a stunning example of ancient Greek architecture. With its rich history and stunning landscapes, Delphi is a must-visit attraction for anyone interested in history and culture.</p>
+      </div>
+    </div>
+  </div>
+  <div class="sections">
+    <h2>Local Tips</h2>
+    <ul>
+      <li>Try the local cuisine, which includes delicious dishes such as moussaka, souvlaki, and Greek salad.</li>
+      <li>Visit the local markets, which offer a wide range of traditional products, such as olive oil, honey, and handicrafts.</li>
+      <li>Learn a few basic Greek phrases, such as "geia sou" (hello) and "efharistó" (thank you), which will help you to communicate with the locals.</li>
+    </ul>
+  </div>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+  integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+  crossorigin=""></script>
+  <script>
+    var map = L.map('map').setView([37.9833, 23.7333], 7);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+      subdomains: ['a', 'b', 'c']
+    }).addTo(map);
+    var attractions = [
+      {lat: 37.9715, lng: 23.7264, name: 'Acropolis'},
+      {lat: 36.4211, lng: 25.3685, name: 'Santorini'},
+      {lat: 38.4823, lng: 22.4936, name: 'Delphi'}
+    ];
+    attractions.forEach(function(attraction) {
+      L.marker([attraction.lat, attraction.lng]).addTo(map).bindPopup(attraction.name);
+    });
+  </script>
+</body>
+</html>
