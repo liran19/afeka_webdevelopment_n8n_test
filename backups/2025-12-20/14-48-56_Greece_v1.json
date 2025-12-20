@@ -1,9 +1,0 @@
-JSON.stringify({
-  backup_info: {
-    location: $('Airtable Trigger').item.json.fields.Location,
-    attempt: $('Get a record').item.json.fields.Attempt + 1,
-    timestamp: $now.toString()
-  },
-  workflow_logic: $json
-}, null, 2) 
-}}
