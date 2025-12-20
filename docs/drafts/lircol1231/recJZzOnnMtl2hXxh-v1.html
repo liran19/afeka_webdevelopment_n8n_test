@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greece Travel Guide</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+   integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+   crossorigin=""/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .hero {
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://loremflickr.com/800/600/Greece');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            line-height: 1.6;
+        }
+        .sections {
+            padding: 20px;
+        }
+        .sections h2 {
+            font-size: 2rem;
+            line-height: 1.6;
+        }
+        .attractions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .attraction {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .attraction img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+        .action {
+            color: #FF385C;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Discover the Beauty of Greece</h1>
+    </div>
+    <div class="sections">
+        <h2>Introduction</h2>
+        <p>Greece is a country with a rich history and culture, known for its stunning islands, delicious cuisine, and vibrant cities. From the ancient ruins of Athens to the picturesque villages of Santorini, Greece has something to offer for every kind of traveler. Whether you're looking for relaxation, adventure, or cultural experiences, Greece is a destination that will leave you with unforgettable memories.</p>
+        <h2>Attractions</h2>
+        <div class="attractions">
+            <div class="attraction">
+                <img src="https://loremflickr.com/800/600/Greece,Acropolis/all">
+                <h3>Acropolis of Athens</h3>
+                <p>The Acropolis of Athens is a ancient citadel situated atop a hill in the heart of Athens. The Parthenon, a iconic temple dedicated to the goddess Athena, is the main attraction of the Acropolis. The history of the Acropolis dates back to the 5th century BC, and it has been a significant cultural and religious center of Greece. Visitors can explore the ancient ruins, enjoy the stunning views of the city, and learn about the history and significance of the Acropolis.</p>
+                <p>The Acropolis is a must-visit attraction for anyone interested in history, architecture, and culture. The site is open to visitors all year round, and guided tours are available in multiple languages. The Acropolis is also a great spot for photography, with its stunning views of the city and the surrounding landscape. In the evening, the Acropolis is illuminated, making it a breathtaking sight to behold.</p>
+                <p>Visitors can reach the Acropolis by taking the metro to the Acropolis station, and then walking up the hill to the entrance. The site is wheelchair accessible, and there are also audio guides available for visitors who want to learn more about the history and significance of the Acropolis.</p>
+                <p>In addition to the Parthenon, the Acropolis is home to several other ancient ruins, including the Temple of Athena Nike and the Erechtheion. Visitors can also explore the Acropolis Museum, which houses a collection of artifacts and exhibits that tell the story of the Acropolis and its history.</p>
+            </div>
+            <div class="attraction">
+                <img src="https://loremflickr.com/800/600/Greece,Santorini/all">
+                <h3>Santorini</h3>
+                <p>Santorini is a picturesque island in the Aegean Sea, known for its stunning landscapes, charming villages, and beautiful beaches. The island is famous for its whitewashed houses, blue-domed churches, and steep cliffs that plunge into the sea. Visitors can explore the narrow streets of Fira and Oia, visit the ancient city of Akrotiri, and enjoy the stunning sunsets that Santorini is famous for.</p>
+                <p>Santorini is a popular destination for couples and honeymooners, with its romantic atmosphere and breathtaking views. The island is also a great spot for foodies, with its delicious seafood, local wines, and traditional Greek cuisine. Visitors can take a donkey ride through the villages, visit the famous black sand beach of Perissa, and enjoy the vibrant nightlife of Fira.</p>
+                <p>Santorini is also a great destination for outdoor enthusiasts, with its hiking trails, scenic views, and water sports. Visitors can take a boat tour of the nearby islands, go snorkeling or scuba diving, and enjoy the stunning scenery of the Aegean Sea. In the evening, visitors can enjoy the local cuisine and wines, and watch the sunset from one of the many scenic spots on the island.</p>
+                <p>Visitors can reach Santorini by taking a ferry from the port of Piraeus, or by flying into the island's airport. The island is small enough to explore on foot, but there are also buses and taxis available for visitors who want to get around quickly. Santorini is a year-round destination, but the best time to visit is in the spring and summer months when the weather is warm and sunny.</p>
+            </div>
+            <div class="attraction">
+                <img src="https://loremflickr.com/800/600/Greece,Delphi/all">
+                <h3>Delphi</h3>
+                <p>Delphi is an ancient site in Greece, situated on the slopes of Mount Parnassus. The site is home to the famous Oracle of Delphi, a temple dedicated to the god Apollo, and a theater that hosted the Pythian Games. Visitors can explore the ancient ruins, visit the Delphi Museum, and enjoy the stunning views of the surrounding landscape.</p>
+                <p>Delphi is a significant cultural and historical site, with a history that dates back to the 8th century BC. The site was an important center of worship and culture in ancient Greece, and it was also a major tourist destination in the ancient world. Visitors can see the remains of the Temple of Apollo, the Theater of Dionysus, and the Castalian Spring, which was believed to have healing properties.</p>
+                <p>Delphi is also a great destination for outdoor enthusiasts, with its hiking trails, scenic views, and water sports. Visitors can take a hike through the surrounding mountains, visit the nearby village of Arachova, and enjoy the stunning scenery of the Greek countryside. In the evening, visitors can enjoy the local cuisine and wines, and watch the sunset from one of the many scenic spots in the area.</p>
+                <p>Visitors can reach Delphi by taking a bus or taxi from the nearby town of Arachova, or by driving from Athens. The site is open to visitors all year round, and guided tours are available in multiple languages. Delphi is a must-visit destination for anyone interested in history, culture, and outdoor activities.</p>
+            </div>
+        </div>
+        <h2>Local Tips</h2>
+        <ul>
+            <li>Try the local cuisine, including Greek salads, souvlaki, and moussaka.</li>
+            <li>Visit the local markets and shops to buy traditional Greek products, such as olive oil, honey, and ceramics.</li>
+            <li>Learn a few basic Greek phrases, such as "geia sou" (hello) and "efharistó" (thank you), to show respect for the local culture.</li>
+        </ul>
+        <div id="map"></div>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+   integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+   crossorigin=""></script>
+    <script>
+        var map = L.map('map').setView([37.9833, 23.7333], 10);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+            subdomains: ['a', 'b', 'c']
+        }).addTo(map);
+        var attractions = [
+            [37.9715, 23.7264, 'Acropolis of Athens'],
+            [36.4211, 25.4314, 'Santorini'],
+            [38.4822, 22.4936, 'Delphi']
+        ];
+        for (var i = 0; i < attractions.length; i++) {
+            var marker = L.marker([attractions[i][0], attractions[i][1]]).addTo(map);
+            marker.bindPopup(attractions[i][2]);
+        }
+    </script>
+</body>
+</html>
