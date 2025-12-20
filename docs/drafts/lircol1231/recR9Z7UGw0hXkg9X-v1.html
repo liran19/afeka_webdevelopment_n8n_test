@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Israel Travel Guide</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+  integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+  crossorigin=""/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .hero {
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://loremflickr.com/800/600/Israel');
+      background-size: cover;
+      background-position: center;
+      height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      line-height: 1.6;
+    }
+    .sections {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0;
+    }
+    .card h2 {
+      font-size: 2rem;
+      line-height: 1.6;
+    }
+    .action {
+      color: #FF385C;
+    }
+    #map {
+      height: 400px;
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>Discover Israel</h1>
+  </div>
+  <div class="introduction">
+    <p>Israel is a country with a rich history and diverse culture. From the ancient city of Jerusalem to the vibrant city of Tel Aviv, Israel has something to offer for every kind of traveler. With its stunning natural beauty, delicious cuisine, and friendly people, Israel is a must-visit destination for anyone looking to explore the Middle East.</p>
+  </div>
+  <div class="sections">
+    <div class="card">
+      <img src="https://loremflickr.com/800/600/Israel,Jerusalem/all" alt="Jerusalem">
+      <h2>Jerusalem</h2>
+      <p>Jerusalem is a city with a rich history that spans over 3,000 years. The city is home to many important religious sites, including the Western Wall, the Church of the Holy Sepulchre, and the Dome of the Rock. Visitors can explore the narrow streets of the Old City, visit the bustling markets, and enjoy the city's vibrant nightlife. With its unique blend of history, culture, and entertainment, Jerusalem is a must-visit destination for anyone traveling to Israel.</p>
+      <p>The city's history is evident in its architecture, with buildings dating back to the Roman and Ottoman empires. The city is also home to many museums, including the Israel Museum, which features a vast collection of art and artifacts from around the world. Visitors can also explore the city's many parks and gardens, including the beautiful Botanical Gardens.</p>
+      <p>One of the most popular attractions in Jerusalem is the Western Wall, a sacred site in Judaism where visitors can pray and leave notes. The city is also home to many important Christian sites, including the Church of the Holy Sepulchre, which is believed to be the site of Jesus' crucifixion and resurrection. With its rich history and cultural significance, Jerusalem is a city that has something to offer for every kind of traveler.</p>
+      <p>Whether you're interested in history, culture, or entertainment, Jerusalem is a city that is sure to leave a lasting impression. With its unique blend of old and new, the city is a must-visit destination for anyone traveling to Israel. So why not start planning your trip to Jerusalem today and experience all that this amazing city has to offer?</p>
+    </div>
+    <div class="card">
+      <img src="https://loremflickr.com/800/600/Israel,TelAviv/all" alt="Tel Aviv">
+      <h2>Tel Aviv</h2>
+      <p>Tel Aviv is a vibrant and cosmopolitan city that is known for its beautiful beaches, vibrant nightlife, and rich cultural scene. The city is home to many important museums, including the Tel Aviv Museum of Art, which features a vast collection of modern and contemporary art. Visitors can also explore the city's many markets, including the bustling Carmel Market, which offers a wide range of fresh produce, clothing, and souvenirs.</p>
+      <p>The city's beaches are some of the most popular attractions in Tel Aviv, with visitors able to enjoy swimming, sunbathing, and water sports. The city is also home to many parks and gardens, including the beautiful Hayarkon Park, which offers a peaceful escape from the hustle and bustle of city life. With its rich cultural scene and vibrant nightlife, Tel Aviv is a city that has something to offer for every kind of traveler.</p>
+      <p>One of the most popular attractions in Tel Aviv is the White City, a UNESCO World Heritage Site that features a collection of over 4,000 buildings built in the Bauhaus style. The city is also home to many important historical sites, including the Eretz Israel Museum, which tells the story of the history and culture of Israel. With its unique blend of old and new, Tel Aviv is a city that is sure to leave a lasting impression.</p>
+      <p>Whether you're interested in history, culture, or entertainment, Tel Aviv is a city that has something to offer for every kind of traveler. With its beautiful beaches, vibrant nightlife, and rich cultural scene, Tel Aviv is a must-visit destination for anyone traveling to Israel. So why not start planning your trip to Tel Aviv today and experience all that this amazing city has to offer?</p>
+    </div>
+    <div class="card">
+      <img src="https://loremflickr.com/800/600/Israel,Haifa/all" alt="Haifa">
+      <h2>Haifa</h2>
+      <p>Haifa is a beautiful city located on the northern coast of Israel, known for its stunning natural beauty and rich cultural heritage. The city is home to many important historical sites, including the Baha'i Gardens, a UNESCO World Heritage Site that features a collection of beautiful gardens and buildings. Visitors can also explore the city's many museums, including the Haifa Museum of Art, which features a vast collection of modern and contemporary art.</p>
+      <p>The city's natural beauty is evident in its stunning coastline, with visitors able to enjoy swimming, sunbathing, and water sports. The city is also home to many parks and gardens, including the beautiful Carmel National Park, which offers a peaceful escape from the hustle and bustle of city life. With its rich cultural scene and stunning natural beauty, Haifa is a city that has something to offer for every kind of traveler.</p>
+      <p>One of the most popular attractions in Haifa is the German Colony, a historic neighborhood that features a collection of beautiful buildings and streets. The city is also home to many important historical sites, including the Elijah's Cave, a sacred site in Judaism and Christianity. With its unique blend of old and new, Haifa is a city that is sure to leave a lasting impression.</p>
+      <p>Whether you're interested in history, culture, or entertainment, Haifa is a city that has something to offer for every kind of traveler. With its stunning natural beauty, rich cultural heritage, and vibrant nightlife, Haifa is a must-visit destination for anyone traveling to Israel. So why not start planning your trip to Haifa today and experience all that this amazing city has to offer?</p>
+    </div>
+  </div>
+  <div class="local-tips">
+    <h2>Local Tips</h2>
+    <ul>
+      <li>Learn some basic Hebrew phrases, such as "shalom" (hello) and "toda" (thank you), to show respect for the local culture.</li>
+      <li>Be prepared for crowds and long lines at popular tourist attractions, especially during peak season.</li>
+      <li>Try some of the local cuisine, such as falafel, shawarma, and hummus, which are delicious and affordable.</li>
+    </ul>
+  </div>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+  integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+  crossorigin=""></script>
+  <script>
+    var map = L.map('map').setView([32.0853, 34.7818], 10);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+      subdomains: ['a', 'b', 'c']
+    }).addTo(map);
+    var jerusalem = L.marker([31.7833, 35.2167]).addTo(map);
+    jerusalem.bindPopup('Jerusalem');
+    var telAviv = L.marker([32.0853, 34.7818]).addTo(map);
+    telAviv.bindPopup('Tel Aviv');
+    var haifa = L.marker([32.8167, 34.9833]).addTo(map);
+    haifa.bindPopup('Haifa');
+  </script>
+</body>
+</html>
