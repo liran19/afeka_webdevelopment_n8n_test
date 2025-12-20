@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greece Travel Guide</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+  integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+  crossorigin=""/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .hero {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://loremflickr.com/800/600/Greece');
+      background-size: cover;
+      background-position: center;
+      height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      line-height: 1.6;
+    }
+    .sections {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0;
+    }
+    .card h2 {
+      font-size: 2rem;
+      line-height: 1.6;
+    }
+    .action {
+      color: #FF385C;
+    }
+    #map {
+      height: 400px;
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>Discover the Wonders of Greece</h1>
+  </div>
+  <div class="introduction">
+    <h2>Welcome to Greece</h2>
+    <p>Greece is a country with a rich history and culture, known for its stunning islands, delicious cuisine, and vibrant cities. From the ancient ruins of Athens to the picturesque villages of Santorini, Greece has something to offer for every kind of traveler. With its warm climate, beautiful beaches, and friendly people, Greece is the perfect destination for your next vacation.</p>
+  </div>
+  <div class="sections">
+    <div class="card">
+      <img src="https://loremflickr.com/800/600/Greece,Acropolis/all">
+      <h2>Acropolis</h2>
+      <p>The Acropolis is a ancient citadel located in the heart of Athens, and it's one of the most famous landmarks in Greece. The Acropolis is home to the Parthenon, a stunning temple dedicated to the goddess Athena, and it's a must-visit attraction for anyone interested in history and architecture. The Acropolis is also a great place to learn about the history of Greece and the significance of the Parthenon. Visitors can explore the ancient ruins, take in the stunning views of the city, and enjoy the beautiful sunsets. The Acropolis is a truly unforgettable experience that will leave you in awe of the ancient Greeks and their achievements.</p>
+    </div>
+    <div class="card">
+      <img src="https://loremflickr.com/800/600/Greece,Santorini/all">
+      <h2>Santorini</h2>
+      <p>Santorini is a picturesque island located in the Aegean Sea, and it's known for its stunning landscapes, beautiful villages, and delicious cuisine. Santorini is a popular destination for couples and honeymooners, and it's a great place to relax and unwind. The island is home to many beautiful beaches, including the famous Red Beach and White Beach, and it's also a great place to explore the local culture and history. Visitors can take a donkey ride through the villages, visit the ancient city of Akrotiri, and enjoy the stunning sunsets. Santorini is a truly unique and unforgettable destination that will leave you with lifelong memories.</p>
+    </div>
+    <div class="card">
+      <img src="https://loremflickr.com/800/600/Greece,Mykonos/all">
+      <h2>Mykonos</h2>
+      <p>Mykonos is a vibrant and cosmopolitan island located in the Cyclades, and it's known for its beautiful beaches, vibrant nightlife, and delicious cuisine. Mykonos is a popular destination for young travelers and partygoers, and it's a great place to meet new people and have fun. The island is home to many beautiful beaches, including the famous Paradise Beach and Super Paradise Beach, and it's also a great place to explore the local culture and history. Visitors can take a boat tour of the nearby islands, visit the ancient city of Delos, and enjoy the stunning sunsets. Mykonos is a truly unforgettable destination that will leave you with lifelong memories.</p>
+    </div>
+  </div>
+  <div class="local-tips">
+    <h2>Local Tips</h2>
+    <ul>
+      <li>Try the local cuisine, including Greek salads, souvlaki, and moussaka.</li>
+      <li>Visit the local markets and shops to buy traditional Greek products and souvenirs.</li>
+      <li>Take a boat tour of the nearby islands to explore the stunning landscapes and beaches.</li>
+    </ul>
+  </div>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+  integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+  crossorigin=""></script>
+  <script>
+    var map = L.map('map').setView([37.9833, 23.7333], 7);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+      subdomains: ['a', 'b', 'c']
+    }).addTo(map);
+    var attractions = [
+      {lat: 37.9715, lng: 23.7264, name: 'Acropolis'},
+      {lat: 36.4211, lng: 25.3633, name: 'Santorini'},
+      {lat: 37.4453, lng: 25.3283, name: 'Mykonos'}
+    ];
+    attractions.forEach(function(attraction) {
+      var marker = L.marker([attraction.lat, attraction.lng]).addTo(map);
+      marker.bindPopup(attraction.name);
+    });
+  </script>
+</body>
+</html>
