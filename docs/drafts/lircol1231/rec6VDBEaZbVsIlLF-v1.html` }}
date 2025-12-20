@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Israel Travel Guide</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+  integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+  crossorigin=""/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .hero {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://loremflickr.com/800/600/Israel');
+      background-size: cover;
+      background-position: center;
+      height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      line-height: 1.6;
+    }
+    .sections {
+      padding: 20px;
+    }
+    .sections h2 {
+      font-size: 2rem;
+      line-height: 1.6;
+    }
+    .attractions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .attraction {
+      background-color: #f7f7f7;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .attraction img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0;
+    }
+    .action {
+      color: #FF385C;
+    }
+    .local-tips {
+      padding: 20px;
+    }
+    .local-tips ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .local-tips li {
+      margin-bottom: 10px;
+    }
+    #map {
+      height: 400px;
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>Discover Israel</h1>
+  </div>
+  <div class="sections">
+    <h2>Introduction</h2>
+    <p>Israel is a country located in the Middle East, known for its rich history and diverse culture. From the ancient city of Jerusalem to the vibrant city of Tel Aviv, Israel has something to offer for every kind of traveler. With its stunning landscapes, delicious cuisine, and friendly people, Israel is a must-visit destination for anyone looking to explore the world.</p>
+  </div>
+  <div class="sections">
+    <h2>Attractions</h2>
+    <div class="attractions">
+      <div class="attraction">
+        <img src="https://loremflickr.com/800/600/Israel,Western_Wall/all" alt="Western Wall">
+        <h3>Western Wall</h3>
+        <p>The Western Wall, also known as the Wailing Wall, is a sacred site in Jerusalem where Jews have been praying for centuries. The wall is a remnant of the Second Temple, which was destroyed by the Romans in 70 CE. Visitors can see the wall and pray, and it's a must-visit site for anyone interested in history and culture. The wall is also a symbol of the Jewish people's connection to their heritage and faith. The Western Wall is open to visitors 24/7, and it's a great place to learn about the history and significance of the site.</p>
+      </div>
+      <div class="attraction">
+        <img src="https://loremflickr.com/800/600/Israel,Dead_Sea/all" alt="Dead Sea">
+        <h3>Dead Sea</h3>
+        <p>The Dead Sea is a saltwater lake located between Israel and Jordan, known for its unique properties and stunning scenery. The sea is the lowest point on Earth, and its water is so salty that it's impossible to sink. Visitors can float in the water, and it's a great place to relax and unwind. The Dead Sea is also a popular spot for spa treatments and wellness retreats. The sea's unique properties make it a great place to learn about geology and the natural world. The Dead Sea is a must-visit destination for anyone looking to experience the natural beauty of Israel.</p>
+      </div>
+      <div class="attraction">
+        <img src="https://loremflickr.com/800/600/Israel,Masada/all" alt="Masada">
+        <h3>Masada</h3>
+        <p>Masada is an ancient fortress located on a plateau overlooking the Dead Sea, known for its stunning scenery and rich history. The fortress was built by King Herod in the 1st century BCE, and it's a UNESCO World Heritage Site. Visitors can explore the fortress and learn about its history, and it's a great place to see the stunning views of the Dead Sea. Masada is also a symbol of the Jewish people's resistance against the Roman Empire, and it's a must-visit site for anyone interested in history and culture. The fortress is open to visitors, and it's a great place to learn about the history and significance of the site.</p>
+      </div>
+    </div>
+  </div>
+  <div class="sections">
+    <h2>Local Tips</h2>
+    <div class="local-tips">
+      <ul>
+        <li>Learn some basic Hebrew phrases, such as "shalom" (hello) and "toda" (thank you), to show respect for the local culture.</li>
+        <li>Be prepared for crowds and long lines at popular tourist sites, and consider visiting early in the morning or later in the evening to avoid the crowds.</li>
+        <li>Try some of the local cuisine, such as falafel, shawarma, and hummus, which are delicious and affordable.</li>
+      </ul>
+    </div>
+  </div>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+  integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+  crossorigin=""></script>
+  <script>
+    var map = L.map('map').setView([31.7833, 35.2167], 8);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+      subdomains: ['a', 'b', 'c']
+    }).addTo(map);
+    var attractions = [
+      [31.7763, 35.2344, 'Western Wall'],
+      [31.4733, 35.6167, 'Dead Sea'],
+      [31.3167, 35.35, 'Masada']
+    ];
+    for (var i = 0; i < attractions.length; i++) {
+      var lat = attractions[i][0];
+      var lng = attractions[i][1];
+      var name = attractions[i][2];
+      L.marker([lat, lng]).addTo(map).bindPopup(name);
+    }
+  </script>
+</body>
+</html>
