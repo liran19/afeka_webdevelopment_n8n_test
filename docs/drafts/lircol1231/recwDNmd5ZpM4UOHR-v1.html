@@ -1,0 +1,124 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greece Travel Guide</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+        crossorigin=""/>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.1;
+        }
+        .hero {
+            height: 50vh;
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('https://loremflickr.com/800/600/Greece,landscape/all');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        .card img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+            border-radius: 12px 12px 0 0;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 2rem;
+        }
+        .local-tips {
+            background-color: #f7f7f7;
+            padding: 2rem;
+            border-radius: 12px;
+        }
+        #map {
+            height: 350px;
+            border-radius: 12px;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Greece</h1>
+        <p>Explore the Cradle of Western Civilization</p>
+    </div>
+    <section style="padding: 2rem;">
+        <p>Greece is a country with a rich history and stunning natural beauty. From the ancient ruins of Delphi to the breathtaking beaches of Navagio, there's something for everyone in Greece.</p>
+        <p>Whether you're interested in history, culture, or simply relaxing on the beach, Greece has it all. With its warm climate, delicious cuisine, and friendly people, you'll feel right at home in this beautiful country.</p>
+    </section>
+    <section class="grid" style="padding: 2rem;">
+        <div class="card">
+            <img src="https://loremflickr.com/800/600/Greece,ruins/all" alt="Ancient Ruins of Delphi">
+            <h3>Ancient Ruins of Delphi</h3>
+            <p>The ancient ruins of Delphi are a must-visit attraction in Greece. Perched on the side of a mountain, the ruins offer breathtaking views of the surrounding landscape.</p>
+            <p>As you explore the site, you'll be struck by the sheer scale and grandeur of the ancient structures. From the Temple of Apollo to the Theater of Dionysus, there's no shortage of history and culture to soak up.</p>
+            <p>Whether you're a history buff or simply looking for a unique experience, the ancient ruins of Delphi are sure to leave a lasting impression.</p>
+        </div>
+        <div class="card">
+            <img src="https://loremflickr.com/800/600/Greece,shipwreck/all" alt="Navagio Beach">
+            <h3>Navagio Beach</h3>
+            <p>Navagio Beach, also known as Shipwreck Beach, is a stunning stretch of coastline in Greece. The beach is home to the wreck of a ship that ran aground in the 1980s, and the resulting landscape is both eerie and beautiful.</p>
+            <p>As you walk along the beach, you'll be struck by the sheer power of the sea and the dramatic scenery that surrounds you. From the towering cliffs to the crystal-clear waters, Navagio Beach is a true natural wonder.</p>
+            <p>Whether you're looking for a relaxing day at the beach or an adrenaline-packed adventure, Navagio Beach has something for everyone.</p>
+        </div>
+        <div class="card">
+            <img src="https://loremflickr.com/800/600/Greece,market,food/all" alt="Local Food Market">
+            <h3>Local Food Market</h3>
+            <p>Greece is famous for its delicious cuisine, and a visit to a local food market is a great way to experience the country's culinary delights. From fresh produce to traditional dishes, you'll find a wide range of tasty treats to sample.</p>
+            <p>As you wander through the market, you'll be struck by the sights, sounds, and smells of the bustling stalls. From the vibrant colors of the fresh fruit and vegetables to the enticing aromas of the traditional dishes, a visit to a local food market is a feast for the senses.</p>
+            <p>Whether you're a foodie or simply looking for a unique experience, a visit to a local food market is a must-do in Greece.</p>
+        </div>
+    </section>
+    <section style="padding: 2rem;">
+        <div class="local-tips">
+            <h3>Local Tips</h3>
+            <ul>
+                <li>Be sure to try some of the local cuisine, including traditional dishes like moussaka and souvlaki.</li>
+                <li>Don't forget to visit some of the local markets, where you can find a wide range of fresh produce and traditional goods.</li>
+                <li>Be respectful of the local culture and customs, especially when visiting ancient ruins or other historical sites.</li>
+            </ul>
+        </div>
+    </section>
+    <section style="padding: 2rem;">
+        <div id="map"></div>
+    </section>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+        crossorigin=""></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var map = L.map('map').setView([38.9637, 21.7883], 7);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+                subdomains: ['a', 'b', 'c']
+            }).addTo(map);
+            var marker1 = L.marker([38.4822, 22.4939]).addTo(map);
+            marker1.bindPopup('Ancient Ruins of Delphi');
+            var marker2 = L.marker([37.6712, 20.8873]).addTo(map);
+            marker2.bindPopup('Navagio Beach');
+            var marker3 = L.marker([37.9833, 23.7333]).addTo(map);
+            marker3.bindPopup('Local Food Market');
+        });
+    </script>
+</body>
+</html>
+```
